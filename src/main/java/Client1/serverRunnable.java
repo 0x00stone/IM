@@ -62,7 +62,6 @@ public class serverRunnable extends Thread {
 
     @Override
     public void run() {
-
         try {
             InetAddress inetAddress = socket.getInetAddress();
 
@@ -113,6 +112,7 @@ public class serverRunnable extends Thread {
                 Thread.sleep(1000);
             }
             System.out.println("结束当前监听");
+            main.hasServer -= 1;
             return;
 
         } catch (Exception e) {

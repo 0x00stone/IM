@@ -26,11 +26,14 @@ public class mainThread extends Thread {
             System.out.println();
             System.out.println();
             Menu.printMenu();
-           // synchronized (main.lock) {
+            synchronized (main.lock) {
                 while (true) {
-                    System.out.print(Updata.name + ":~$ ");
-                    Menu.scan();//看作Scanner.next()
-             //   }
+                    if (main.hasServer == 0) {
+                        System.out.print(Updata.name + ":~$ ");
+                        Menu.scan();//看作Scanner.next()
+                    }
+                    Thread.sleep(200);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

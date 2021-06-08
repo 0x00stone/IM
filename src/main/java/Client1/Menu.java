@@ -1,5 +1,6 @@
 package Client1;
 
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
@@ -12,6 +13,7 @@ import java.util.Scanner;
  * version: 1.0 <br>
  */
 public class Menu {
+    public static inputStreamReader inputstreamreader = new inputStreamReader(System.in);
     public static user[] U;
     static public boolean first; //第一次连接服务器终端有输出,之后心跳连接不输出
 
@@ -30,6 +32,7 @@ public class Menu {
     public static void scan() {
         try {
             String[] choice = new Scanner(System.in).nextLine().split(" ");
+
             if (choice.length >= 2 && "help".equals(choice[1])) {
                 if ("login".equals(choice[0])) {
                     System.out.println("      描述:连接服务器,客户端在服务器上线,获取服务器上存储的用户表");
@@ -95,9 +98,6 @@ public class Menu {
         } catch (Exception e) {
             e.printStackTrace();
             log.write(e.toString());
-            System.out.print(Updata.name + ":~$ ");
-            Menu.scan();//看作Scanner.next()
-            System.out.println();
         }
     }
 

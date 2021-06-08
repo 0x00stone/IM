@@ -7,6 +7,7 @@ public class main {
     public static Socket socket = null;
     public static Object lock = false;
     public static mainThread mainThread;
+    public static int hasServer = 0;
 
     public static void main(String[] args){
 

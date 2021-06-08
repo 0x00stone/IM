@@ -112,7 +112,7 @@ public class Overview implements Initializable {
         String[] s = text.split(" ");
         textIn.clear();
         if (s.length == 1) {
-            textOut.appendText("连接用户" + text);
+            textOut.appendText("连接用户" + text + "\n");
             //用户名,连接数据库,未写
             for (user users : Overview.U) {
                 if (s[0].equals(users.NickName)) {
@@ -140,7 +140,7 @@ public class Overview implements Initializable {
                 }
             }
         } else if (s.length == 2) {
-            textOut.appendText("连接地址" + text);
+            textOut.appendText("连接地址" + text + "\n");
             socket = new Socket(s[0], Integer.parseInt(s[1]));
             Parent target = FXMLLoader.load(getClass().getResource("/client.fxml"));
             Stage secondWindow=new Stage();
