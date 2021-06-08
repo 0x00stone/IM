@@ -1,5 +1,8 @@
 package Client1;
 
+import com.sun.glass.events.KeyEvent;
+
+import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -28,20 +31,21 @@ public class Server extends Thread{
 
         try {
 
-                System.out.println("服务正在运行，等待客户端连接！");
-                log.write("点对点服务端开启");
-                ExecutorService pool = Executors.newFixedThreadPool(Updata.poolSize);//线程池大小
+            System.out.println("服务正在运行，等待客户端连接！");
+            log.write("点对点服务端开启");
+            ExecutorService pool = Executors.newFixedThreadPool(Updata.poolSize);//线程池大小
             while (true) {
                 Socket client = server.accept();
                 //接收socket,打断主线程输入
                 //lock.wait();
-
-                    main.LockClick.wait();
+                //synchronized (main.lock) {
                     System.out.println("收到socket");
+
+                    System.out.println("处理socket");
                     serverRunnable serverRunnable = new serverRunnable();
                     serverRunnable.setSocket(client);
                     pool.submit(serverRunnable);
-
+                //}
             }
         }
         catch (Exception e){

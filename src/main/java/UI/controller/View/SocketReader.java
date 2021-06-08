@@ -41,7 +41,6 @@ public class SocketReader extends Thread{
 
                 if ("/quit".equals(next)) {
                     System.out.println("退出");
-
                     break;
                 }
             }

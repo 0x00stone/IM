@@ -60,15 +60,13 @@ public class client implements Initializable {
         out.flush();
         if ("/quit".equals(text)) {
             System.out.println("连接已中断");
-            Platform.exit();
+
         }
 
     }
 
     public void client(Socket client){
         try {
-
-
             get = new Scanner(client.getInputStream());
             out = new PrintWriter(client.getOutputStream());
 

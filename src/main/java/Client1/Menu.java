@@ -27,7 +27,7 @@ public class Menu {
         System.out.println("------------------------------------------------------");
     }
 
-    public static void scan(Object lock) {
+    public static void scan() {
         try {
             String[] choice = new Scanner(System.in).nextLine().split(" ");
             if (choice.length >= 2 && "help".equals(choice[1])) {
@@ -67,7 +67,7 @@ public class Menu {
                 } else if (choice.length == 3) {
                     main.socket = new Socket(choice[1], Integer.parseInt(choice[2]));
                 }
-                new Client().client(main.socket, lock, "");
+                new Client().client(main.socket, "");
 
             } else if ("user".equals(choice[0])) {
                 System.out.println("用户名-----" + "ipv6----" + "状态-----" + "公钥");
@@ -80,22 +80,24 @@ public class Menu {
                     for (user users : U) {
                         if (choice[1].equals(users.NickName)) {
                             main.socket = new Socket(users.IPv6, 9000);   //2的要改
-                            new Client().client(main.socket, lock, users.NickName);
+                            new Client().client(main.socket, users.NickName);
 
                         }
                     }
                 } else if (choice.length == 3) {
                     //ip和端口
                     main.socket = new Socket(choice[1], Integer.parseInt(choice[2]));
-                    new Client().client(main.socket, lock, "");
+                    new Client().client(main.socket,"");
                 }
             } else if ("help".equals(choice[0])) {
                 printMenu();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             log.write(e.toString());
+            System.out.print(Updata.name + ":~$ ");
+            Menu.scan();//看作Scanner.next()
+            System.out.println();
         }
     }
 

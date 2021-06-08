@@ -74,6 +74,7 @@ public static user[] UpdataNickname(Socket socket,TextArea textArea) throws IOEx
         String[] split = message.split(",");
         User[i] = new user(Integer.valueOf(split[0]), split[1], split[2], split[3], Boolean.valueOf(split[4]));
     }
+    Overview.U = User;
     log.write("接收用户表");
     System.out.println("接收用户表");
     bw.write("接收\n");

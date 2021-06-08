@@ -8,7 +8,7 @@ import util.Welcome;
  * author: s1mple <br>
  * version: 1.0 <br>
  */
-public class mainThread extends Thread{
+public class mainThread extends Thread {
 
     public void run() {
         this.setPriority(MIN_PRIORITY);
@@ -26,21 +26,14 @@ public class mainThread extends Thread{
             System.out.println();
             System.out.println();
             Menu.printMenu();
-
-            //synchronized (main.LockServer) {
-                synchronized (main.LockClick) {
-                    while (true) {
-                        System.out.print(Updata.name + ":~$ ");
-                        Menu.scan(main.LockClick);//看作Scanner.next()
-                        System.out.println();
-              //      }
-                }
+           // synchronized (main.lock) {
+                while (true) {
+                    System.out.print(Updata.name + ":~$ ");
+                    Menu.scan();//看作Scanner.next()
+             //   }
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

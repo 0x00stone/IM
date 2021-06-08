@@ -141,6 +141,7 @@ public class Overview implements Initializable {
             }
         } else if (s.length == 2) {
             textOut.appendText("连接地址" + text);
+            socket = new Socket(s[0], Integer.parseInt(s[1]));
             Parent target = FXMLLoader.load(getClass().getResource("/client.fxml"));
             Stage secondWindow=new Stage();
             Scene scene=new Scene(target);
@@ -148,7 +149,6 @@ public class Overview implements Initializable {
             secondWindow.setScene(scene);
             secondWindow.show();
 
-            socket = new Socket(s[0], Integer.parseInt(s[1]));
 
             new Runnable() {
                 @Override

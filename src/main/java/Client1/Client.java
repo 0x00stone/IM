@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.FutureTask;
 
 /**
  * description: Client <br>
@@ -21,7 +22,7 @@ public class Client {
     public PrintWriter out;
     public String nickName;
 
-    public boolean auto(){
+    public boolean auto() {
         try {
             out.println(Updata.rsaPublicKey);
             out.flush();//1.客户机发送公钥
@@ -62,17 +63,15 @@ public class Client {
                 System.out.println("聊天加密失败");
                 return false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             log.write(e.getMessage());
             return false;
         }
     }
 
-    public void client(Socket client, Object lock , String nickName){
+    public void client(Socket client, String nickName) {
         try {
-
-
             get = new Scanner(client.getInputStream());
             out = new PrintWriter(client.getOutputStream());
 
@@ -81,25 +80,49 @@ public class Client {
                 flag = auto();
             }
 
-                InetAddress inetAddress = client.getInetAddress();
+            int isclose = 0;
+            InetAddress inetAddress = client.getInetAddress();
 
-                SocketWriter socketWriter = new SocketWriter(out);
-                socketWriter.setAddress(inetAddress);
-                socketWriter.setmain(lock);
-                socketWriter.setNickName(nickName);
+            SocketWriter socketWriter = new SocketWriter(out);
+            socketWriter.setAddress(inetAddress);
+            socketWriter.setNickName(nickName);
+            FutureTask<Boolean> sw = new FutureTask<>(socketWriter);
+            Thread thread = new Thread(sw);
+            thread.start();
 
-                Thread thread = new Thread(socketWriter);
-                thread.start();
+            SocketReader socketReader = new SocketReader(get);
+            socketReader.setAddress(inetAddress);
+            socketReader.setNickName(nickName);
+            FutureTask<Boolean> sr = new FutureTask<>(socketReader);
+            Thread thread2 = new Thread(sr);
+            thread2.start();
 
-                SocketReader socketReader = new SocketReader(get);
-                socketReader.setAddress(inetAddress);
-                socketReader.setmain(lock);
-                socketReader.setNickName(nickName);
-                Thread thread2 = new Thread(socketReader);
+            System.out.println("检测");
+            Boolean th1 = false;
+            Boolean th2 = false;
 
-                thread2.start();
-                lock.wait();
-        }catch (Exception e){
+            while (true){
+                if(th1){
+                    sr.cancel(true);
+                    thread2.interrupt();
+                }
+                if (th2){
+                    sw.cancel(true);
+                    thread.interrupt();
+                }
+                th1 = sw.isDone();
+                th2 = sr.isDone();
+                if(th1 && th2){
+                    System.out.println("结束");
+                    break;
+                }
+                Thread.sleep(1000);
+            }
+            System.out.println("结束当前通信");
+            return;
+
+
+        } catch (Exception e) {
             e.printStackTrace();
             log.write(e.getMessage());
         }

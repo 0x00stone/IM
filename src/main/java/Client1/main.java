@@ -5,11 +5,11 @@ import java.net.Socket;
 
 public class main {
     public static Socket socket = null;
-    public static Object LockServer = false;
-    public static Object LockClick = false;
+    public static Object lock = false;
     public static mainThread mainThread;
 
     public static void main(String[] args){
+
         Updata updata = new Updata();
         updata.getConfig();//加载配置
 
@@ -18,8 +18,6 @@ public class main {
 
         mainThread = new mainThread();
         mainThread.start();//主线程
-
-
 
     }
 }

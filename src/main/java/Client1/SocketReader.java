@@ -2,6 +2,7 @@ package Client1;
 
 import java.net.InetAddress;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 /**
  * description: SocketReader <br>
@@ -9,11 +10,17 @@ import java.util.Scanner;
  * author: s1mple <br>
  * version: 1.0 <br>
  */
-public class SocketReader extends Thread {
+public class SocketReader implements Callable {
     private Scanner get;
     private InetAddress address;
     private Object lock;
     private String name;
+    private int num;
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
 
     public SocketReader(Scanner get) {
         this.get = get;
@@ -32,27 +39,22 @@ public class SocketReader extends Thread {
     }
 
 
-    public void run() {
-       // synchronized (lock) {
+    public Boolean call() {
+        while (true) {
+            try {
+                String next = get.nextLine();
 
-            while (true) {
-                    try {
+                System.out.println(name + "(" + address + ")" + ":" + next);
+                System.out.print(Updata.name + ">");
+                if ("/quit".equals(next)) {
+                    System.out.println("退出");
+                    return true;
+                }
 
-                        String next = get.nextLine();
-                        if ("/quit".equals(next)) {
-                            System.out.println("退出");
-                            lock.notify();
-
-                            break;
-                        }
-                        System.out.println(name + "(" + address + ")" + ":" + next);
-                        System.out.print(Updata.name  + ">");
-
-                    } catch (Exception e) {
-                        System.out.println("连接已中断");
-                        lock.notify();
-                        return;
-                   // }
+            } catch (Exception e) {
+                System.out.println("连接已中断");
+                return true;
             }
         }
-    }}
+    }
+}
