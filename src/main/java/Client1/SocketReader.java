@@ -13,21 +13,10 @@ import java.util.concurrent.Callable;
 public class SocketReader implements Callable {
     private Scanner get;
     private InetAddress address;
-    private Object lock;
     private String name;
-    private int num;
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
 
     public SocketReader(Scanner get) {
         this.get = get;
-    }
-
-    public void setmain(Object lock) {
-        this.lock = lock;
     }
 
     public void setAddress(InetAddress address) {

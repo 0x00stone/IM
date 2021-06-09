@@ -80,8 +80,9 @@ public class Client {
                 flag = auto();
             }
 
-            int isclose = 0;
             InetAddress inetAddress = client.getInetAddress();
+
+
 
             SocketWriter socketWriter = new SocketWriter(out);
             socketWriter.setAddress(inetAddress);
@@ -117,7 +118,7 @@ public class Client {
                     break;
                 }
                 Thread.sleep(1000);
-            }
+            }  //write和read有一个线程结束,另一个也结束
             System.out.println("结束当前通信");
             return;
 

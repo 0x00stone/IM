@@ -13,13 +13,13 @@ import java.util.Scanner;
  * version: 1.0 <br>
  */
 public class Menu {
-    public static inputStreamReader inputstreamreader = new inputStreamReader(System.in);
+    //public static inputStreamReader inputstreamreader = new inputStreamReader(System.in);
     public static user[] U;
     static public boolean first; //第一次连接服务器终端有输出,之后心跳连接不输出
 
     public static void printMenu() {
         System.out.println("-----------------------------------------------------");
-        System.out.println("+ -- --=[ Instant Messangeing v0.0.2                ]");
+        System.out.println("+ -- --=[ Instant Messangeing v0.0.3                ]");
         System.out.println("+ -- --=[ 有关某个命令的详细信息，请键入 HELP 命令名        ]");
         System.out.println("+ -- --=[   login         连接服务器进入频道            ]");
         System.out.println("+ -- --=[   connectv4     同局域网下                  ]");

@@ -15,21 +15,13 @@ public class SocketWriter implements Callable {
     private PrintWriter out;
     private Scanner get_key = null;
     private InetAddress address;
-    private Object lock;
     private String name;
-    private int num;
 
-    public void setNum(int num) {
-        this.num = num;
-    }
 
     public void setNickName(String name) {
         this.name = name;
     }
 
-    public void setmain(Object lock) {
-        this.lock = lock;
-    }
 
     public SocketWriter(PrintWriter out) {
         this.out = out;
