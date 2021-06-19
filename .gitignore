@@ -4,3 +4,5 @@ Config.properties
 *.properties
 Serverlog.txt
 target/*
+/target
+target/
