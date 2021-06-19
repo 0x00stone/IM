@@ -22,6 +22,7 @@ public class Updata {
     public static String rsaPublicKey;
     public static String rsaPrivateKey;
     public static int poolSize;
+    public static String password;
 /**
  * description: 服务端上线 
  * version: 1.0 
@@ -84,8 +85,9 @@ public class Updata {
             System.out.println("用户表接收完成");
         }
         Menu.first = false;
-        System.out.print("\n" + Updata.name + ":~$ ");
-
+        if(main.hasServer == 0) {
+            System.out.print("\n" + Updata.name + ":~$ ");
+        }
         return User;
     }
 
@@ -184,7 +186,7 @@ public class Updata {
     }
 
     public Map<Integer, String> newKey(Properties properties) {
-        Map<Integer, String> rsaKey = Rsa.getRsaKey(1024);
+        Map<Integer, String> rsaKey = Rsa.getRsaKey(4096);
         rsaPublicKey = rsaKey.get(0);
         rsaPrivateKey = rsaKey.get(1);
         setProperties("RsaPublicKey", rsaPublicKey, "rsapublic",properties);
@@ -236,7 +238,7 @@ public class Updata {
             while(inetAds.hasMoreElements()) {
                 inetAddress = inetAds.nextElement();
                 //检查此地址是否是IPv6地址以及是否是保留地址
-                if(inetAddress instanceof Inet6Address&& !isReservedAddr(inetAddress)) {
+                if(inetAddress instanceof Inet6Address&& !util.net.isReservedAddr(inetAddress)) {
                     break outer;
 
                 }
@@ -251,12 +253,6 @@ public class Updata {
 
         return ipAddr;
     }
-    private static boolean isReservedAddr(InetAddress inetAddr) {
-        if(inetAddr.isAnyLocalAddress()||inetAddr.isLinkLocalAddress()||inetAddr.isLoopbackAddress())
-        {
-            return true;
-        }
-        return false;
-    }
+
 
 }

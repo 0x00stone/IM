@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Rsa {
     public static final String CHARSET = "UTF-8";
-    public static final String RSA_ALGORITHM = "RSA"; // ALGORITHM ['ælgərɪð(ə)m] 算法的意思
+    public static final String RSA_ALGORITHM = "RSA"; // ALGORITHM 算法的意思
 
     public static Map<Integer, String> getRsaKey(int keySize) {
         // 为RSA算法创建一个KeyPairGenerator对象

@@ -1,5 +1,7 @@
 package Client1;
 
+import Client1.Sqlite.Options;
+
 import java.net.Socket;
 
 
@@ -10,7 +12,10 @@ public class main {
     public static int hasServer = 0;
 
     public static void main(String[] args){
+//        Login.register();
+        Login.login();
 
+        /*Options.create();
         Updata updata = new Updata();
         updata.getConfig();//加载配置
 
@@ -18,7 +23,7 @@ public class main {
         server.start();//监听线程
 
         mainThread = new mainThread();
-        mainThread.start();//主线程
+        mainThread.start();//主线程*/
 
     }
 }
