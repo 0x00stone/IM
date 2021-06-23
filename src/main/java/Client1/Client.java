@@ -36,7 +36,7 @@ public class Client {
             log.write(rsaPublicKey);
             System.out.println(rsaPublicKey);
 
-            aesKey = Aes.getAseKey(256);
+            aesKey = Aes.getAseKey(512);
             out.println(Rsa.publicEncrypt(rsaPublicKey, aesKey));
             out.flush();
             //aesKey = Rsa.privateDecrypt(Updata.rsaPrivateKey,get.nextLine());//3
