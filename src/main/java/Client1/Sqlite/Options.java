@@ -1,10 +1,13 @@
 package Client1.Sqlite;
 import Client1.Updata;
+import util.Aes;
+import util.Sha256;
+import util.Vigenere;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 /**
@@ -17,14 +20,13 @@ public class Options {
     public static String url = null;
 
 
-    public static void create()
-    {
+    public static void create() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:" + url + "options.db");
-            //System.out.println("Opened database successfully");
+          //  System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
             String sql = "CREATE TABLE `options` (\n" +
@@ -38,11 +40,9 @@ public class Options {
             sql = "INSERT INTO options (option_name,option_value) " +
                     "VALUES (\"username\",\"" + Updata.name + "\");";
             stmt.executeUpdate(sql);
-
             sql = "INSERT INTO options (option_name,option_value) " +
                     "VALUES (\"port\",\"" + Updata.port + "\");";
             stmt.executeUpdate(sql);
-
             sql = "INSERT INTO options (option_name,option_value) " +
                     "VALUES (\"poolSize\",\"" + Updata.poolSize + "\");";
             stmt.executeUpdate(sql);
@@ -56,7 +56,7 @@ public class Options {
             stmt.executeUpdate(sql);
 
             sql = "INSERT INTO options (option_name,option_value) " +
-                    "VALUES (\"password\",\"" + Updata.password+ "\");";
+                    "VALUES (\"password\",\"" + util.md5.md5(Updata.password)+ "\");";
             stmt.executeUpdate(sql);
 
             sql = "INSERT INTO options (option_name,option_value) " +
@@ -64,16 +64,21 @@ public class Options {
             stmt.executeUpdate(sql);
 
             sql = "INSERT INTO options (option_name,option_value) " +
-                    "VALUES (\"rsaPrivateKey\",\"" + Updata.rsaPrivateKey + "\");";
+                    "VALUES (\"rsaPrivateKey\",\"" + Aes.encrypt(Updata.aesKey,Updata.rsaPrivateKey) + "\");";
+            stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO options (option_name,option_value) " +
+                    "VALUES (\"aesKey\",\"" + Vigenere.jiami_vigenere(Updata.aesKey, Sha256.getSHA256(Updata.password)) + "\");";
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.out.println("用户创建失败");
             System.exit(0);
         }
-        System.out.println("Table created successfully");
+        System.out.println("用户新建成功:)");
     }
 
     public static void insert(String name,String value){

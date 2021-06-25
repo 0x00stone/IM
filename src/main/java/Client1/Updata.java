@@ -23,6 +23,7 @@ public class Updata {
     public static String rsaPrivateKey;
     public static int poolSize;
     public static String password;
+    public static String aesKey;
 /**
  * description: 服务端上线 
  * version: 1.0 
