@@ -7,6 +7,7 @@ import util.Sha256;
 import util.Vigenere;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
@@ -73,14 +74,20 @@ public class Login {
                 Updata.name = username;
                 Map<Integer, String> rsaKey = Rsa.getRsaKey(4096);
                 String aseKey = Aes.getAseKey(256);
+
+                FileInputStream fis = new FileInputStream(new File("./default.properties"));
+                Properties Config = new Properties();
+                Config.load(fis);
+
                 Updata.aesKey = aseKey;
                 Updata.rsaPublicKey = rsaKey.get(0);
                 Updata.rsaPrivateKey = rsaKey.get(1);
-                Updata.host = "1.15.141.195";
-                Updata.port = 10000;
-                Updata.serverSocketPort = 9000;
-                Updata.poolSize = 5;
+                Updata.host = Config.getProperty("host");;
+                Updata.port = Integer.valueOf(Config.getProperty("port"));
+                Updata.serverSocketPort = Integer.valueOf(Config.getProperty("serverSocketPort"));
+                Updata.poolSize = Integer.valueOf(Config.getProperty("poolSize"));
                 Updata.password = password1;
+                fis.close();
 
                 String filePath = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + username + "\\";
                 File file = new File(filePath);
