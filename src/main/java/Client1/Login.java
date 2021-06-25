@@ -21,7 +21,7 @@ import java.util.Scanner;
  * version: 1.0 <br>
  */
 public class Login {
-    public static void login() {
+    public static int login() {
         try {
             System.out.println("请输入用户名:");
             Scanner scanner = new Scanner(System.in);
@@ -46,16 +46,19 @@ public class Login {
                     Updata.port = Integer.valueOf(Options.select("port"));
                     Updata.serverSocketPort = Integer.valueOf(Options.select("serverSocketPort"));
                     System.out.println("登陆成功");
-
+                    return 1;
                 } else {
                     System.out.println("密码错误,请重新登陆");
+                    return 0;
                 }
             } else {
                 System.out.println("当前计算机无" + username + "用户存档");
+                return 0;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public static void register() { //还需要对私钥通过密码加密

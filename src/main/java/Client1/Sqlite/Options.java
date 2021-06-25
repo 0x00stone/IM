@@ -88,7 +88,7 @@ public class Options {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:" + url + "options.db");
             c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+           // System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
 

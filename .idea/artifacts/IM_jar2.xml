@@ -10,7 +10,6 @@
       </element>
       <element id="directory" name="lib">
         <element id="library" level="project" name="lib" />
-        <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
         <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.15" />
         <element id="library" level="project" name="Maven: commons-io:commons-io:1.4" />
         <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.22" />

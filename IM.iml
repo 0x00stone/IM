@@ -15,7 +15,6 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.22" level="project" />
-    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:16" level="project" />

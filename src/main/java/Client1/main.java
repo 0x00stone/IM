@@ -21,7 +21,7 @@ public class main {
         int choice = choice();
 
         if (choice == 1) {
-            Login.login();
+            int loginnumber = Login.login();
         } else if (choice == 2) {
             Login.register();
         } else {
