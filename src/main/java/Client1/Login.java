@@ -28,7 +28,6 @@ public class Login {
             String username = scanner.nextLine();
 
             String filePath = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + username + "\\";
-            Options.setUrl(filePath);
             File file = new File(filePath);
             if (file.exists()) {
                 System.out.println("请输入密码:");
@@ -97,7 +96,6 @@ public class Login {
                 if (!file.exists()) {
                     file.mkdirs();
                     System.out.println("文件夹创建完毕");
-                    Options.setUrl(filePath);
                     Options.create();
                   //  System.out.println("数据库创建成功");
                 } else {

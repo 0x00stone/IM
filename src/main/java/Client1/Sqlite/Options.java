@@ -17,9 +17,7 @@ import java.sql.Statement;
  * version: 1.0 <br>
  */
 public class Options {
-    public static String url = null;
-
-
+    private static String url = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + Updata.name + "\\";
     public static void create() {
         Connection c = null;
         Statement stmt = null;
@@ -139,11 +137,4 @@ public class Options {
     }
 
 
-    public static void setUrl(String url) {
-        Options.url = url;
-    }
-
-    public static String getUrl() {
-        return url;
-    }
 }
