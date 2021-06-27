@@ -24,6 +24,7 @@ public class Updata {
     public static int poolSize;
     public static String password;
     public static String aesKey;
+    public static String url = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + Updata.name + "\\";
 /**
  * description: 服务端上线 
  * version: 1.0 

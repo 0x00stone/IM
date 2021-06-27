@@ -1,7 +1,5 @@
 package Client1;
 
-import Client1.Sqlite.Contact;
-
 /**
  * description: Client1.test <br>
  * date: 2021/6/26 13:25 <br>
@@ -11,7 +9,6 @@ import Client1.Sqlite.Contact;
 public class test {
     public static void main(String[] args) {
         Updata.name = "z";
-        Contact.create();
 
     }
 }
