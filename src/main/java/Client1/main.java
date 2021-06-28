@@ -1,12 +1,12 @@
 package Client1;
 
-import util.Log.log;
+import util.Log.Log;
 
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-import static util.Log.log.logger;
+import static util.Log.Log.logger;
 
 
 public class main {
@@ -18,7 +18,7 @@ public class main {
 
     public static void main(String[] args) {
         //logger = util.Log.log.setLoggerHanlder(Level.INFO);
-        logger = util.Log.log.setLoggerHanlder(Level.INFO);
+        logger = Log.setLoggerHanlder(Level.FINEST);
         logger.info("日志开启");
 
         int choice = choice();
@@ -29,13 +29,14 @@ public class main {
             int registerNumber = Login.register();
             if (registerNumber == 0) {
                 System.out.println("注册失败");
-                util.Log.log.config("注册失败");
+                Log.config("注册失败");
             } else if (registerNumber == 1) {
                 System.out.println("注册成功");
-                util.Log.log.config("注册成功");
-                util.Log.log.close();
-                log.url = Updata.url;
-                logger = util.Log.log.setLoggerHanlder(Level.INFO);
+                logger.config("注册成功");
+                Log.localCloseToUser();
+
+                logger = Log.setLoggerHanlder(Level.FINEST);
+                logger.finest("注册成功123");
             }
         } else {
             System.exit(0);

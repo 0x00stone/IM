@@ -1,6 +1,8 @@
 package Client1;
 
 
+import util.Log.Log;
+
 import java.io.*;
 import java.net.*;
 
@@ -17,7 +19,7 @@ public class Updata {
     public static int poolSize;
     public static String password;
     public static String aesKey;
-    public static String url = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + name + "\\";
+    public static String url;
 /**
  * description: 服务端上线 
  * version: 1.0 
@@ -55,7 +57,7 @@ public class Updata {
         String length = br.readLine();
         bw.write(length + "\n");
         bw.flush();
-        util.Log.log.logger.finest("接收用户数");
+        Log.logger.finest("接收用户数");
 
         user[] User = new user[Integer.valueOf(length)];
         for (int i = 0; i < Integer.valueOf(length); i++) {
@@ -64,7 +66,7 @@ public class Updata {
             User[i] = new user(Integer.valueOf(split[0]), split[1], split[2], split[3], Boolean.valueOf(split[4]));
         }
         Menu.U = User;
-        util.Log.log.finest("接收用户表");
+        Log.finest("接收用户表");
         bw.write("接收\n");
         bw.flush();
 
@@ -73,7 +75,7 @@ public class Updata {
 
         bw.write("朕已阅\n");
         bw.flush();
-        util.Log.log.finest("用户表接收完成");
+        Log.finest("用户表接收完成");
 
 
         if(Menu.first){

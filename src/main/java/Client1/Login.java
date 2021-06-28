@@ -88,6 +88,7 @@ public class Login {
                 Updata.serverSocketPort = Integer.valueOf(Config.getProperty("serverSocketPort"));
                 Updata.poolSize = Integer.valueOf(Config.getProperty("poolSize"));
                 Updata.password = password1;
+                Updata.url = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + username + "\\";
                 fis.close();
 
                 String filePath = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + username + "\\";

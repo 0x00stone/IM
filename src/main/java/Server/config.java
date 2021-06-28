@@ -1,5 +1,7 @@
 package Server;
 
+import util.Log.Log;
+
 import java.io.*;
 import java.util.Properties;
 import java.util.Scanner;
@@ -24,7 +26,7 @@ public class config {
             fos.close();
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
         }
     }
 
@@ -90,7 +92,7 @@ public class config {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
         }
     }
 }

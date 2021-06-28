@@ -1,5 +1,7 @@
 package Client1;
 
+import util.Log.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -26,7 +28,7 @@ public class index {
         index.store(fos,"index");
         }catch (Exception e){
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
         }
     }
 
@@ -87,7 +89,7 @@ public class index {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
             return null;
         }
 

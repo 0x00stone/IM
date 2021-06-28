@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class Sqlite {
     private final static String CLASS_NAME = "org.sqlite.JDBC";
-    private final static String url = "jdbc:sqlite:" + Updata.url;
+    private final static String url = "jdbc:sqlite:" + System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + Updata.name + "\\";
 
     /**
      * 获取数据库连接

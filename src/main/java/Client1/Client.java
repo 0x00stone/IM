@@ -2,6 +2,7 @@ package Client1;
 
 import util.Cypher.Aes;
 import util.Cypher.Rsa;
+import util.Log.Log;
 
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -26,14 +27,14 @@ public class Client {
         try {
             out.println(Updata.rsaPublicKey);
             out.flush();//1.客户机发送公钥
-            util.Log.log.finest("客户机发送公钥:" + rsaPublicKey);
+            Log.finest("客户机发送公钥:" + rsaPublicKey);
             //rsaPublicKey = get.nextLine();//1
             System.out.println(Updata.rsaPublicKey);
 
             //out.println(Rsa.encrypt(rsaPublicKey,Updata.rsaPublicKey));
             //out.flush();//2
             rsaPublicKey = Rsa.privateDecrypt(Updata.rsaPrivateKey, get.nextLine());
-            util.Log.log.finest("收到rsaPublic:" + rsaPublicKey);
+            Log.finest("收到rsaPublic:" + rsaPublicKey);
             System.out.println(rsaPublicKey);
 
             aesKey = Aes.getAseKey(512);
@@ -41,31 +42,31 @@ public class Client {
             out.flush();
             //aesKey = Rsa.privateDecrypt(Updata.rsaPrivateKey,get.nextLine());//3
             //        System.out.println(aesKey);
-            util.Log.log.finest("发送aesKey:" + aesKey);
+            Log.finest("发送aesKey:" + aesKey);
             System.out.println(aesKey);
 
             //out.println(Aes.encrypt(aesKey,"ack1"));
             //out.flush();//4
             String decrypt = Aes.decrypt(aesKey, get.nextLine());
-            util.Log.log.finest("aes解密为:" + decrypt);
+            Log.finest("aes解密为:" + decrypt);
             System.out.println(decrypt);
 
             if ("ack1".equals(decrypt)) {
                 out.println(Aes.encrypt(aesKey, "ack2"));
                 out.flush();
-                util.Log.log.finest("密钥传输成功");
+                Log.finest("密钥传输成功");
                 System.out.println("聊天加密成功");
                 return true;
             } else {
                 out.println(Aes.encrypt(aesKey, "fail"));
                 out.flush();
-                util.Log.log.finest("密钥传输失败");
+                Log.finest("密钥传输失败");
                 System.out.println("聊天加密失败");
                 return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
             return false;
         }
     }
@@ -125,7 +126,7 @@ public class Client {
 
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
         }
     }
 }

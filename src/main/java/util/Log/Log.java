@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * author: s1mple <br>
  * version: 1.0 <br>
  */
-public class log {
+public class Log {
     private static Calendar now = Calendar.getInstance();
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,18 +36,20 @@ public class log {
     //使用唯一的fileHandler，保证当天的所有日志写在同一个文件里
     private static FileHandler fileHandler = getFileHandler();
 
-    private static LogFormatter myLogFormatter = new LogFormatter();
+    private static LogFormatter LogFormatter = new LogFormatter();
 
-    public static String url = System.getProperty("user.home") + "\\Documents\\IM\\data\\local\\Logs";
-
-    public static void close(){
-        fileHandler.close();
+    public static void localCloseToUser(){
+        fileHandler = getFileHandler();
     }
 
     private synchronized static String getLogFilePath() {
         StringBuffer logFilePath = new StringBuffer();
 //        logFilePath.append(System.getProperty("user.home"));
-        logFilePath.append(url);
+        if (Updata.url == null) {
+            logFilePath.append(System.getProperty("user.home") + "\\Documents\\IM\\data\\local\\Logs");
+        }else {
+            logFilePath.append(Updata.url);
+        }
         logFilePath.append(File.separatorChar);
         logFilePath.append(LOG_FOLDER_NAME);
         logFilePath.append(File.separatorChar);
@@ -93,7 +95,7 @@ public class log {
         try {
             //以文本的形式输出
 //            fileHandler.setFormatter(new SimpleFormatter());
-            fileHandler.setFormatter(myLogFormatter);
+            fileHandler.setFormatter(LogFormatter);
 
             logger.addHandler(fileHandler);
             logger.setLevel(level);

@@ -1,7 +1,7 @@
 package Client1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import util.Log.Log;
+
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -97,7 +97,7 @@ public class Menu {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            util.Log.log.warning(e.getMessage());
+            Log.warning(e.getMessage());
         }
     }
 

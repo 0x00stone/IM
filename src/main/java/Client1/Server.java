@@ -1,8 +1,7 @@
 package Client1;
 
-import com.sun.glass.events.KeyEvent;
+import util.Log.Log;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -32,7 +31,7 @@ public class Server extends Thread {
         try {
 
             System.out.println("服务正在运行，等待客户端连接！");
-            util.Log.log.finest("端到端服务开启");
+            Log.finest("端到端服务开启");
             ExecutorService pool = Executors.newFixedThreadPool(Updata.poolSize);//线程池大小
             while (true) {
                 Socket client = server.accept();

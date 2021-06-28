@@ -2,6 +2,7 @@ package Client1;
 
 import util.Cypher.Aes;
 import util.Cypher.Rsa;
+import util.Log.Log;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -49,11 +50,11 @@ public class serverRunnable extends Thread {
         String ack = Aes.decrypt(aesKey, get.nextLine());
         System.out.println(ack);
         if ("ack2".equals(ack)) {
-            util.Log.log.finest("密钥传输成功");
+            Log.finest("密钥传输成功");
             System.out.println("聊天加密成功");
             return true;
         } else {
-            util.Log.log.warning("密钥传输失败");
+            Log.warning("密钥传输失败");
             System.out.println("聊天加密失败");
             return false;//5
         }
@@ -66,7 +67,7 @@ public class serverRunnable extends Thread {
 
             System.out.println();
             System.out.println(inetAddress + " 已成功连接到此台服务器上。");
-            util.Log.log.finest(inetAddress + " 已成功连接到此台服务器上。");
+            Log.finest(inetAddress + " 已成功连接到此台服务器上。");
 
 
             out = new PrintWriter(socket.getOutputStream());
