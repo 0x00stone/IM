@@ -97,7 +97,7 @@ public class Menu {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.write(e.toString());
+            util.Log.log.warning(e.getMessage());
         }
     }
 

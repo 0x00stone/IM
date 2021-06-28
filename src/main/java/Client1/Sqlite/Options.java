@@ -1,11 +1,12 @@
 package Client1.Sqlite;
 import Client1.Updata;
-import util.Aes;
-import util.Sha256;
-import util.Vigenere;
+import util.Cypher.Aes;
+import util.Cypher.md5;
+import util.Cypher.Sha256;
+import util.Cypher.Vigenere;
+import util.Sqlite;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -17,16 +18,13 @@ import java.sql.Statement;
  * version: 1.0 <br>
  */
 public class Options {
-    private static String url = System.getProperty("user.home") + "\\Documents\\IM\\data\\id_" + Updata.name + "\\";
     public static void create() {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + url + "options.db");
-          //  System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("options.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
             String sql = "CREATE TABLE `options` (\n" +
                     "  `option_id` INTEGER PRIMARY KEY,\n" +
                     "  `option_name` varchar(191) NOT NULL DEFAULT '',\n" +
@@ -54,7 +52,7 @@ public class Options {
             stmt.executeUpdate(sql);
 
             sql = "INSERT INTO options (option_name,option_value) " +
-                    "VALUES (\"password\",\"" + util.md5.md5(Updata.password)+ "\");";
+                    "VALUES (\"password\",\"" + md5.md5(Updata.password)+ "\");";
             stmt.executeUpdate(sql);
 
             sql = "INSERT INTO options (option_name,option_value) " +
@@ -83,12 +81,9 @@ public class Options {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + url + "options.db");
-            c.setAutoCommit(false);
-           // System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("options.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
 
             String sql = "INSERT INTO options (option_name,option_value) " +
                     "VALUES (\"" + name +"\",\"" + value + "\");";
@@ -112,12 +107,9 @@ public class Options {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + url + "options.db");
-            c.setAutoCommit(false);
-            //System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("options.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
             ResultSet rs = stmt.executeQuery( "SELECT * FROM `options`;" );
             while ( rs.next() ) {
                 String optionName= rs.getString("option_name");

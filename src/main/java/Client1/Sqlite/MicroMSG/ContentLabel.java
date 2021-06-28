@@ -1,9 +1,8 @@
 package Client1.Sqlite.MicroMSG;
 
-import Client1.Updata;
+import util.Sqlite;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
@@ -17,11 +16,9 @@ public class ContentLabel {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + Updata.url + "MicroMSG.db");
-            //  System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("MicroMSG.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
             String sql = "CREATE TABLE ContactLabel (" +
                     "LabelId INTEGER PRIMARY KEY, " + //标签id
                     "LabelName TEXT, " + //标签名称

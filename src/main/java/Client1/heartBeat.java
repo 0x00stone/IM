@@ -19,12 +19,12 @@ public class heartBeat extends Thread {
                 while (true) {
                     //获取 用户表
                     Updata.UpdataNickname(main.socket);
-                    log.write("heartBeat");
+                    util.Log.log.finest("心跳程序开启");
                     this.wait(60000);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                log.write(e.getMessage());
+                util.Log.log.warning("心跳程序出错:" + e.getMessage());
             }
         }
     }

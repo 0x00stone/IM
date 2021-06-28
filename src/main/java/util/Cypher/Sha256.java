@@ -1,4 +1,4 @@
-package util;
+package util.Cypher;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

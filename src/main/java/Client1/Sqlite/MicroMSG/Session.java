@@ -1,9 +1,8 @@
 package Client1.Sqlite.MicroMSG;
 
-import Client1.Updata;
+import util.Sqlite;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
@@ -17,11 +16,9 @@ public class Session {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + Updata.url + "MicroMSG.db");
-            //  System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("MicroMSG.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
             String sql = "CREATE TABLE Session(" +
                     "strUsrName TEXT  PRIMARY KEY," + //用户名
                     "nOrder INT DEFAULT 0," + //按顺序自动生成序号

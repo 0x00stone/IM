@@ -1,9 +1,8 @@
 package Client1.Sqlite.MicroMSG;
 
-import Client1.Updata;
+import util.Sqlite;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
@@ -13,15 +12,14 @@ import java.sql.Statement;
  * version: 1.0 <br>
  */
 public class Chatroom {
+
     public static void create() {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:" + Updata.url + "MicroMSG.db");
-            //  System.out.println("Opened database successfully");
+            c = Sqlite.getConnection("MicroMSG.db");
 
-            stmt = c.createStatement();
+            stmt = Sqlite.getStatement(c);
             String sql = "CREATE TABLE ChatRoom(" + //聊天群成员和个人设置表
                     "ChatRoomName TEXT PRIMARY KEY," + //聊天室名称 = 随机id + @chatroom
                     "UserNameList TEXT," +  //用户id列表

@@ -4,7 +4,7 @@ package UI.controller.View;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import util.Rsa;
+import util.Cypher.Rsa;
 
 import java.io.*;
 import java.net.*;

@@ -1,4 +1,4 @@
-package util;
+package util.Cypher;
 
 /**
  * description: Vigenere <br>

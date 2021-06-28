@@ -32,7 +32,7 @@ public class Server extends Thread {
         try {
 
             System.out.println("服务正在运行，等待客户端连接！");
-            log.write("点对点服务端开启");
+            util.Log.log.finest("端到端服务开启");
             ExecutorService pool = Executors.newFixedThreadPool(Updata.poolSize);//线程池大小
             while (true) {
                 Socket client = server.accept();

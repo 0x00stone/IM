@@ -14,8 +14,6 @@ public class mainThread extends Thread {
         this.setPriority(MIN_PRIORITY);
         //log开始
         try {
-            log.Clientstart();
-            log.write("启动");
 
             Welcome.graph();
 

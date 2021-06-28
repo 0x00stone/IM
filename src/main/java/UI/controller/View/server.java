@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import util.Aes;
-import util.Rsa;
+import util.Cypher.Aes;
+import util.Cypher.Rsa;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;

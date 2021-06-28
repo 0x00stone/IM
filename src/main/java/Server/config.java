@@ -1,11 +1,6 @@
 package Server;
 
-import Client1.log;
-import Client1.user;
-
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
@@ -29,7 +24,7 @@ public class config {
             fos.close();
         } catch (Exception e) {
             e.printStackTrace();
-            log.write(e.getMessage());
+            util.Log.log.warning(e.getMessage());
         }
     }
 
@@ -95,7 +90,7 @@ public class config {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.write(e.getMessage());
+            util.Log.log.warning(e.getMessage());
         }
     }
 }

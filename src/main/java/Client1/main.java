@@ -1,13 +1,12 @@
 package Client1;
 
-import Client1.Sqlite.Options;
-import util.Aes;
-import util.Sha256;
-import util.Vigenere;
+import util.Log.log;
 
 import java.net.Socket;
-import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+import java.util.logging.Level;
+
+import static util.Log.log.logger;
 
 
 public class main {
@@ -15,15 +14,29 @@ public class main {
     public static Object lock = false;
     public static mainThread mainThread;
     public static int hasServer = 0;
+    // public static Logger logger;
 
     public static void main(String[] args) {
+        //logger = util.Log.log.setLoggerHanlder(Level.INFO);
+        logger = util.Log.log.setLoggerHanlder(Level.INFO);
+        logger.info("日志开启");
 
         int choice = choice();
 
         if (choice == 1) {
             int loginnumber = Login.login();
         } else if (choice == 2) {
-            Login.register();
+            int registerNumber = Login.register();
+            if (registerNumber == 0) {
+                System.out.println("注册失败");
+                util.Log.log.config("注册失败");
+            } else if (registerNumber == 1) {
+                System.out.println("注册成功");
+                util.Log.log.config("注册成功");
+                util.Log.log.close();
+                log.url = Updata.url;
+                logger = util.Log.log.setLoggerHanlder(Level.INFO);
+            }
         } else {
             System.exit(0);
         }

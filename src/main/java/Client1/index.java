@@ -26,7 +26,7 @@ public class index {
         index.store(fos,"index");
         }catch (Exception e){
             e.printStackTrace();
-            log.write(e.getMessage());
+            util.Log.log.warning(e.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class index {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            log.write(e.getMessage());
+            util.Log.log.warning(e.getMessage());
             return null;
         }
 

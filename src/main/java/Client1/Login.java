@@ -1,15 +1,14 @@
 package Client1;
 
 import Client1.Sqlite.Options;
-import util.Aes;
-import util.Rsa;
-import util.Sha256;
-import util.Vigenere;
+import util.Cypher.Aes;
+import util.Cypher.md5;
+import util.Cypher.Rsa;
+import util.Cypher.Sha256;
+import util.Cypher.Vigenere;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
@@ -33,7 +32,7 @@ public class Login {
                 System.out.println("请输入密码:");
                 String password = scanner.nextLine();
                 String optionsPassword = Options.select("password");
-                if (optionsPassword.equals(util.md5.md5(password))) {
+                if (optionsPassword.equals(md5.md5(password))) {
                     //登陆,加载配置,解密私钥
                     Updata.password = password;
                     Updata.aesKey = Vigenere.jiemi_vigenere(Options.select("aesKey"), Sha256.getSHA256(password));
@@ -60,7 +59,7 @@ public class Login {
         return 0;
     }
 
-    public static void register() { //还需要对私钥通过密码加密
+    public static int register() { //还需要对私钥通过密码加密
         try {
             System.out.println("请输入用户名:");
             Scanner scanner = new Scanner(System.in);
@@ -108,7 +107,9 @@ public class Login {
             }
         } catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return 0;
         }
+        return 1;
     }
 
 }
